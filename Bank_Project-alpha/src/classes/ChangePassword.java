@@ -79,13 +79,15 @@ public class ChangePassword {
 		new_pass.setFont(new Font("SansSerif",Font.BOLD,20));
 		mainframe.add(new_pass);
 		wrngpass=new Label("Check your old password");
-		wrngpass.setBounds(10, 500, 300, 30);
+		wrngpass.setBounds(20, 500, 300, 30);
+		wrngpass.setFont(new Font("SansSerif",Font.BOLD,15));
+		wrngpass.setForeground(Color.RED);
 		nopass=new Label("New password field should not be blank");
-		nopass.setBounds(10, 500, 300, 30);
+		nopass.setBounds(20, 500, 300, 30);
 		nopass.setFont(new Font("SansSerif",Font.BOLD,15));
 		nopass.setForeground(Color.RED);
 		nopassold=new Label("Old password field should not be blank");
-		nopassold.setBounds(10, 500, 300, 30);
+		nopassold.setBounds(20, 500, 300, 30);
 		nopassold.setFont(new Font("SansSerif",Font.BOLD,15));
 		nopassold.setForeground(Color.RED);
 		head=new Label("Change Password");
@@ -123,12 +125,14 @@ public class ChangePassword {
 						wrngpass.setVisible(false);
 						nopassold.setVisible(false);
 						nopass.setVisible(true);
+						success.setVisible(false);
 						mainframe.add(nopass);	
 					}
 					else {
 						wrngpass.setVisible(false);
 						nopassold.setVisible(true);
 						nopass.setVisible(false);
+						success.setVisible(false);
 						mainframe.add(nopassold);	
 					}
 							
@@ -140,6 +144,7 @@ public class ChangePassword {
 					}
 					else {
 						nopassold.setVisible(false);
+						success.setVisible(false);
 						wrngpass.setVisible(true);
 						nopass.setVisible(false);
 						mainframe.add(wrngpass);
