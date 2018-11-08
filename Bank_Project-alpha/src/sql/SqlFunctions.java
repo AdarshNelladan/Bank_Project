@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.*;
 
 public class SqlFunctions {
-    public static String database="local";
+    public static String database="online";
 	static Statement stmt=null;
     public double bal;
 	public String error;

@@ -106,7 +106,7 @@ public class CreateAccount extends Frame  {
     		 checkinput.setVisible(false);
     		 checkinput.setForeground(Color.RED);
     		 add(checkinput);
-    		 success=new Label("Age field can only contain numbers.Check your inputs.");
+    		 success=new Label("Success");
     		 success.setBounds(20, 800, 1000, 60);
     		 success.setVisible(false);
     		 success.setForeground(Color.GREEN);

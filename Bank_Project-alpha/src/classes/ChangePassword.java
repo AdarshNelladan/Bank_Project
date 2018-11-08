@@ -20,7 +20,7 @@ public class ChangePassword {
 	SqlFunctions sql=new SqlFunctions();	
 	Frame mainframe;
 	Button back,change;
-	Label old_pass,new_pass,wrngpass,nopass,nopassold,head;
+	Label old_pass,new_pass,wrngpass,nopass,nopassold,head,success;
 	TextField old_field,new_field;
 	public ChangePassword(int id) {
 		mainframe=new Frame("Change Password");
@@ -82,12 +82,22 @@ public class ChangePassword {
 		wrngpass.setBounds(10, 500, 300, 30);
 		nopass=new Label("New password field should not be blank");
 		nopass.setBounds(10, 500, 300, 30);
+		nopass.setFont(new Font("SansSerif",Font.BOLD,15));
+		nopass.setForeground(Color.RED);
 		nopassold=new Label("Old password field should not be blank");
 		nopassold.setBounds(10, 500, 300, 30);
+		nopassold.setFont(new Font("SansSerif",Font.BOLD,15));
+		nopassold.setForeground(Color.RED);
 		head=new Label("Change Password");
 		head.setBounds(150, 50, 400, 40);
 		head.setFont(new Font("Tahoma",Font.BOLD,34));
 		mainframe.add(head);
+		success=new Label("Success");
+		success.setBounds(20, 500, 200, 60);
+		success.setVisible(false);
+		success.setFont(new Font("SansSerif",Font.BOLD,15));
+		success.setForeground(Color.GREEN);
+		mainframe.add(success);
 		
 		old_field=new TextField();
 		old_field.setEchoChar('*');
@@ -126,7 +136,7 @@ public class ChangePassword {
 				else {		
 					if(old_pswrd.equals(db_pswrd)) {
 						sql.passwordChange(id, new_pswrd);
-					
+					    success.setVisible(true);
 					}
 					else {
 						nopassold.setVisible(false);
