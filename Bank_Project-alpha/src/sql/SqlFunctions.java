@@ -42,14 +42,6 @@ public class SqlFunctions {
     	try {
     		stmt=con.createStatement();
             stmt.executeUpdate("insert into bank_project.user_account (NAME,USER_NAME,PASSWORD,ADDRESS,AGE,GENDER) values ('"+name+"','"+username+"','"+ps+"','"+address+"',"+age+",'"+gender+"');");
-			if(database.equals("online")) {
-				int getid=0;
-				ResultSet check_id=stmt.executeQuery("select USER_ID from bank_project.user_account where USER_NAME='"+username+"';");
-				while(check_id.next()) {
-					getid=Integer.parseInt(check_id.getString(1));
-				}
-				stmt.executeUpdate("insert into bank_project.account_details (USER_ID) values ("+getid+");");
-			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			error=e.getMessage();
