@@ -18,7 +18,7 @@ public class Balance {
 	Button back;
 	Label bal,head;
 	
-	public Balance(double balance) {
+	public Balance(String balance) {
 		// TODO Auto-generated constructor stub
 		mainframe=new Frame("Balance");
 		mainframe.setSize(400, 400);
@@ -64,7 +64,7 @@ public class Balance {
 					
 				}
 	   	     });
-		bal=new Label(""+balance+"");
+		bal=new Label(balance);
 		bal.setBounds(150, 150, 200, 40);
 		bal.setFont(new Font("SansSerif",Font.BOLD,22));
 		mainframe.add(bal);

@@ -1,5 +1,6 @@
 package sql;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.*;
 
@@ -100,19 +101,23 @@ public class SqlFunctions {
 			System.out.println(e);
 		}
     }
-    public double balanceCheck(int id) {
+    public String balanceCheck(int id) {
+    	
+    	
     	try {
     		stmt=con.createStatement();
 			check_bal=stmt.executeQuery("select BALANCE from bank_project.account_details where USER_ID="+id+";");
 			while(check_bal.next()) {
 			bal=check_bal.getDouble(1);
+			
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			System.out.println(e);
 		}
-    	return bal;
+    	String bal1 =new BigDecimal(bal).toPlainString();
+    	return bal1;
     }
     public void statement(int id) {
     	  Statement stmt_rev;

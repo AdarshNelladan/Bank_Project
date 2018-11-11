@@ -22,7 +22,9 @@ public class Withdraw {
 	Button back,with_button;
 	Label amt_label,success,fail_label,head,empty;
 	TextField amt_field;
-	double amount,bal;
+	double amount;
+	String bal;
+	double bal1;
 	public Withdraw(int id) {
 		mainframe=new Frame("Withdraw");
 		mainframe.setSize(600, 600);
@@ -103,7 +105,8 @@ public class Withdraw {
 				try {
 					 amount=Double.parseDouble(amt_field.getText());
 						bal=sql.balanceCheck(id);
-						if(amount>0 && bal-amount>=1000) {
+						bal1=Double.parseDouble(bal);
+						if(amount>0 && bal1-amount>=1000) {
 						  sql.withdraw(id, amount);
 						  success.setVisible(true);
 						  fail_label.setVisible(false);

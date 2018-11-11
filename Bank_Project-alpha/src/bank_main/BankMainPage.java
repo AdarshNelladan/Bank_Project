@@ -20,7 +20,7 @@ public class BankMainPage {
 	Button balance_button,statement_button,chgpswd_button,deposit_button,withdraw_button,details_button;
 	Label welcome_label;
 	SqlFunctions sql=new SqlFunctions();
-	public double balance;
+	public String balance;
 	public BankMainPage(int id) {
 		// TODO Auto-generated constructor stub
 		mainframe=new Frame("Welcome");
