@@ -27,8 +27,10 @@ public class SqlFunctions {
 		            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_project", "root", "adarsh");
 	            }
 	            else {
+	            	//con=DriverManager.getConnection("jdbc:mysql://www.db4free.net:3306/bankprotest", "imcatest", "imcatest");
 	            	con=DriverManager.getConnection("jdbc:mysql://www.db4free.net:3306/bank_project", "imca17006", "imca17006");
 	            }
+	            stmt=con.createStatement();
 
 	        }
 	        catch(Exception e)
@@ -43,7 +45,7 @@ public class SqlFunctions {
 
     public void create(String name,String username,String ps,String address,int age,String gender) {
     	try {
-    		stmt=con.createStatement();
+    		
             stmt.executeUpdate("insert into bank_project.user_account (NAME,USER_NAME,PASSWORD,ADDRESS,AGE,GENDER) values ('"+name+"','"+username+"','"+ps+"','"+address+"',"+age+",'"+gender+"');");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -55,7 +57,6 @@ public class SqlFunctions {
     public int checkAndProceed(String name,String ps){
     	int flag=0;
     	try {
-    		stmt=con.createStatement();
 			check_rs= stmt.executeQuery("select USER_ID from bank_project.user_account where USER_NAME='"+name+"' AND PASSWORD='"+ps+"';");
 			while(check_rs.next()) {
 				
@@ -70,7 +71,6 @@ public class SqlFunctions {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			
-			new ExceptionDialog("Error in SQL!");
 		}
 		if(flag==1) {
 			
@@ -213,9 +213,30 @@ public class SqlFunctions {
 		}
     	return id;
     }
+    public int checkName(String name) {
+    	int id=0;
+    	try {
+			ResultSet rs_name=stmt.executeQuery("select USER_ID from bank_project.user_account where USER_NAME='"+name+"';");
+			while(rs_name.next()) {
+				id++;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+			new ExceptionDialog("Error Establishing a Connection");
+		}
+    	return id;
+    }
     
-    public static void disconnect() throws Exception {
-    	con.close();
+    public static void disconnect() {
+    	try {
+			con.close();
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+		}
+    	catch(Exception e1) {
+    		
+    	}
     }
     public void transferById(int id,int toid,double amt) {
     	 String getname=getName(toid);

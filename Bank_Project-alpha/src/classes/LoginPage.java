@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import bank_main.*;
+import classes.DialogManagement.ExceptionDialog;
 import sql.SqlFunctions;
 public class LoginPage  {
 	int res=0;
@@ -18,7 +19,7 @@ public class LoginPage  {
 	public Frame fr1;
 	public TextField name_field,pass_field;
 	public Button login_button,discard_button;
-	public Label name_label,pass_label,incorrect_login;
+	public Label name_label,pass_label,incorrect_login,no_username;
     public Checkbox agree;
     public String input_name,input_password;
    public LoginPage(){
@@ -83,6 +84,12 @@ public class LoginPage  {
   		 incorrect_login.setBounds(10, 500, 900, 60);
   		 incorrect_login.setVisible(false);
   		 fr1.add(incorrect_login);
+  		 
+  		 no_username=new Label("Username does not exist!");
+  		 no_username.setForeground(Color.RED);
+ 		 no_username.setBounds(10, 500, 900, 60);
+ 		 no_username.setVisible(false);
+ 		 fr1.add(no_username);
   		 Label head =new Label();
 		 head.setText("Login to your account");
 		 head.setFont(new Font("Tahoma",Font.BOLD,30));
@@ -130,15 +137,29 @@ public class LoginPage  {
 		this.input_name=input_name;
 	    this.input_password=input_password;
 
-	    res=sq.checkAndProceed(input_name, input_password);	
-	    if (res==0) {
-	    	 incorrect_login.setVisible(true);
+	    if(input_name.isEmpty() || input_password.isEmpty()) {
+	    	new ExceptionDialog("Null input not accepted!");
 	    }
 	    else {
-	    	fr1.dispose();
-	    	new BankMainPage(res);
+	    	int check=sq.checkName(input_name);
+	    	if(check==0) {
+	    		incorrect_login.setVisible(false);
+	    		no_username.setVisible(true);
+	    	}
+	    	else {
+	    		res=sq.checkAndProceed(input_name, input_password);	
+			    if (res==0) {
+			    	 incorrect_login.setVisible(true);
+			    	 no_username.setVisible(false);
+			    }
+			    else {
+			    	fr1.dispose();
+			    	new BankMainPage(res);
+		         }
+	         }
+	    
 	    }
-	 }
+   }
 
    public void windowClosing(WindowEvent e) {  
 	    fr1.dispose();  
