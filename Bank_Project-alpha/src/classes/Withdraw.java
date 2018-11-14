@@ -6,6 +6,7 @@ package classes;
 import java.awt.*;
 import java.awt.event.*;
 
+import classes.DialogManagement.ExceptionDialog;
 import sql.SqlFunctions;
 
 /**
@@ -30,7 +31,7 @@ public class Withdraw {
 		mainframe.setSize(600, 600);
 		mainframe.setBackground(Color.LIGHT_GRAY);
 		mainframe.setFont(new Font("SansSerif",Font.BOLD,20));
-		mainframe.addWindowListener(new WindowListener() {
+		mainframe.addWindowListener(new WindowAdapter() {
 	   		 public void windowClosing(WindowEvent w) {	   			 
 	   			mainframe.dispose();
 	   		 }
@@ -128,6 +129,7 @@ public class Withdraw {
 					
 				}catch(NumberFormatException er) {
 					empty.setVisible(true);
+					new ExceptionDialog("Error in Input!");
 					fail_label.setVisible(false);
 					success.setVisible(false);
 				}

@@ -3,6 +3,7 @@ package sql;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.*;
+import classes.DialogManagement.ExceptionDialog;
 
 public class SqlFunctions {
     public static String database="online";
@@ -32,7 +33,8 @@ public class SqlFunctions {
 	        }
 	        catch(Exception e)
 	        {
-	            e.printStackTrace();
+	            
+	            new ExceptionDialog("Error Establishing a Connection");
 	        }
 
 	        return con;        
@@ -47,6 +49,7 @@ public class SqlFunctions {
 			// TODO Auto-generated catch block
 			error=e.getMessage();
 			errorCreation(error);
+			new ExceptionDialog("Error Establishing a Connection");
 		}
     }
     public int checkAndProceed(String name,String ps){
@@ -66,7 +69,8 @@ public class SqlFunctions {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			new ExceptionDialog("Error in SQL!");
 		}
 		if(flag==1) {
 			
@@ -86,8 +90,9 @@ public class SqlFunctions {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			System.out.println(e);
+		   
+		   new ExceptionDialog("Error in SQL");
+
 		}
     	return pass;
     }
@@ -97,8 +102,8 @@ public class SqlFunctions {
 			stmt.executeUpdate("update bank_project.user_account set PASSWORD='"+password+"' where USER_ID="+id+";");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			System.out.println(e);
+			//
+			new ExceptionDialog("Error in SQL");
 		}
     }
     public String balanceCheck(int id) {
@@ -113,8 +118,7 @@ public class SqlFunctions {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			System.out.println(e);
+			new ExceptionDialog("Error Establishing a Connection");
 		}
     	String bal1 =new BigDecimal(bal).toPlainString();
     	return bal1;
@@ -134,7 +138,8 @@ public class SqlFunctions {
 	    	  }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-           e.printStackTrace();
+           
+           new ExceptionDialog("Error Establishing a Connection");
 
 		}
 
@@ -146,7 +151,8 @@ public class SqlFunctions {
 			stmt.executeUpdate("insert into bank_project.statement_details values ("+id+",'DEPOSIT',"+amt+");");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			new ExceptionDialog("Error Establishing a Connection");
 		}
     }
     public void withdraw(int id,double amt) {
@@ -155,7 +161,8 @@ public class SqlFunctions {
 			stmt.executeUpdate("insert into bank_project.statement_details values ("+id+",'WITHDRAW',"+amt+");");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			new ExceptionDialog("Error Establishing a Connection");
 		}
     }
     public void userDetails(int id) {
@@ -172,7 +179,8 @@ public class SqlFunctions {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			new ExceptionDialog("Error Establishing a Connection");
 		}
     }
     
@@ -185,12 +193,94 @@ public class SqlFunctions {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			new ExceptionDialog("Error Establishing a Connection");
 		}
     	return getname;
     }
+    
+    public int getId(String name) {
+    	int id=0;
+    	try {
+			ResultSet rs_name=stmt.executeQuery("select USER_ID from bank_project.user_account where USER_NAME='"+name+"';");
+			while(rs_name.next()) {
+				id=Integer.parseInt(rs_name.getString("USER_ID"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+			new ExceptionDialog("Error Establishing a Connection");
+		}
+    	return id;
+    }
+    
     public static void disconnect() throws Exception {
     	con.close();
+    }
+    public void transferById(int id,int toid,double amt) {
+    	 String getname=getName(toid);
+    	 String bal="";
+    	 if (getname.equals("")) {
+    		 new ExceptionDialog("No User with this ID!"); 
+    	 }
+    	 else {
+    		 bal=balanceCheck(id);
+    		 double balance=Double.parseDouble(bal);
+    		 if(balance-amt<1000) {
+    			 new ExceptionDialog("Less Balance or Min_Bal_Rule not satisfied!"); 
+    		 }
+    		 else {
+    			 try {
+					stmt.executeUpdate("update bank_project.account_details set BALANCE=BALANCE+"+amt+" where USER_ID="+toid+";");
+					stmt.executeUpdate("update bank_project.account_details set BALANCE=BALANCE-"+amt+" where USER_ID="+id+";");
+					stmt.executeUpdate("insert into bank_project.statement_details values ("+toid+",'CREDITED',"+amt+");");
+					stmt.executeUpdate("insert into bank_project.statement_details values ("+id+",'DEBITED',"+amt+");");
+					new ExceptionDialog("Success!"); 
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					
+					new ExceptionDialog("Error Establishing a Connection"); 
+				}
+    			 
+    		 }
+    	 }
+    }
+    
+    public void transferByName(int id,String name,double amt) {
+    	int getid=getId(name);
+    	String bal="";
+    	if(getid==0) {
+    		new ExceptionDialog("No User with this Username!"); 
+    	}
+    	else {
+    		bal=balanceCheck(id);
+   		    double balance=Double.parseDouble(bal);
+    		if(balance-amt<1000) {
+    			new ExceptionDialog("Less Balance or Min_Bal_Rule not satisfied!");
+    		}
+    		else {
+    			try {
+    				stmt.executeUpdate("update bank_project.account_details set BALANCE=BALANCE+"+amt+" where USER_ID="+getid+";");
+    				stmt.executeUpdate("update bank_project.account_details set BALANCE=BALANCE-"+amt+" where USER_ID="+id+";");
+    				stmt.executeUpdate("insert into bank_project.statement_details values ("+getid+",'CREDITED',"+amt+");");
+    				stmt.executeUpdate("insert into bank_project.statement_details values ("+id+",'DEBITED',"+amt+");");
+    				new ExceptionDialog("Success!");
+    			} catch (SQLException e) {
+    				// TODO Auto-generated catch block
+    				
+    				new ExceptionDialog("Error Establishing a Connection");
+    			}
+    		}
+    	}
+    	
+    }
+    public void deleteAccount(int id) {
+    	try {
+			stmt.executeUpdate("DELETE FROM bank_project.user_account WHERE (USER_ID = '"+id+"');");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			new ExceptionDialog("Error Establishing a Connection");
+		}
     }
     public String errorCreation(String er) {
     	return er;

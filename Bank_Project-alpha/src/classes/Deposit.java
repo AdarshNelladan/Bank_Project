@@ -5,7 +5,7 @@ package classes;
 
 import java.awt.*;
 import java.awt.event.*;
-
+import classes.DialogManagement.ExceptionDialog;
 import sql.SqlFunctions;
 
 /**
@@ -112,6 +112,7 @@ public class Deposit {
 					 
 				 }catch(NumberFormatException er) {
 					 empty.setVisible(true);
+					 new ExceptionDialog("Input Error");
 					 success.setVisible(false);
 				 }
 				

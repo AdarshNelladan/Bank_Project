@@ -13,15 +13,15 @@ public class CreateAccount extends Frame  {
 	 */
 	private static final long serialVersionUID = 1L;
 	 SqlFunctions sq=new SqlFunctions();
-	 public Frame fr1;
-     public TextField name_field,pass_field,age_field,username_field;
-     public TextArea address_area;
-     public Label name_label,pass_label,age_label,gender_label,address_label,username_label,no_input,checkinput,success,head;
-     public Button create_button,discard_button;
-     public Checkbox agree;
-     public CheckboxGroup gender_box;
-     public String input_name="",input_password="",input_gender="",input_address="",input_username="";
-     public int input_age=0;
+     private TextField name_field,pass_field,age_field,username_field;
+     private TextArea address_area;
+     private Label name_label,pass_label,age_label,gender_label,address_label,username_label,no_input,checkinput,success,head,checkname;
+     private Label agelimit;
+     private Button create_button,discard_button;
+     private Checkbox agree;
+     private CheckboxGroup gender_box;
+     private String input_name="",input_password="",input_gender="",input_address="",input_username="";
+     private int input_age=0;
      public CreateAccount(){
     	     
         	 setTitle("Create Account");
@@ -111,6 +111,16 @@ public class CreateAccount extends Frame  {
     		 success.setVisible(false);
     		 success.setForeground(Color.GREEN);
     		 add(success);
+    		 agelimit=new Label("You should be aged above 18 to apply for account.");
+    		 agelimit.setBounds(20, 800, 1000, 60);
+    		 agelimit.setVisible(false);
+    		 agelimit.setForeground(Color.RED);
+    		 add(agelimit);
+    		 checkname=new Label("Name field cannnot contain numbers.Check your inputs.");
+    		 checkname.setBounds(20, 800, 1000, 60);
+    		 checkname.setVisible(false);
+    		 checkname.setForeground(Color.RED);
+    		 add(checkname);
     		 
  
     		 //TextArea
@@ -145,29 +155,53 @@ public class CreateAccount extends Frame  {
     			         no_input.setVisible(true);
     			         checkinput.setVisible(false);
     			         success.setVisible(false);
+    			         checkname.setVisible(false);
+    			         agelimit.setVisible(false);
+    				 }
+    				 else if (name_field.getText().matches(".*\\d+.*")) {
+    					 checkinput.setVisible(false);
+						 checkname.setVisible(true);
+						 no_input.setVisible(false);
+						 success.setVisible(false);
+						 agelimit.setVisible(false);
     				 }
     				 else {
     					 try {
-    						 checkinput.setVisible(false);
-    						 no_input.setVisible(false);
         				     input_name=name_field.getText();
         				     input_username=username_field.getText();
         				     input_password=pass_field.getText();
                              input_address=address_area.getText();
         				     if(age_field.getText().isEmpty()==false ) {
             			     	 input_age= Integer.parseInt(age_field.getText()); 
-        				     } 
+            			     	 
+            			     	 if(input_age<18) {
+            			     		success.setVisible(false);
+               					    checkinput.setVisible(false);
+               					    checkname.setVisible(false);
+           						    no_input.setVisible(false); 
+           						    agelimit.setVisible(true);
+            			     	 }
+            			     	 else {
+                				     getDataAccount(input_name,input_username,input_password,input_address,input_age,input_gender);   
+                					 success.setVisible(true);
+                					 checkinput.setVisible(false);
+                					 checkname.setVisible(false);
+            						 no_input.setVisible(false); 
+            						 agelimit.setVisible(false);
+            			     	 }
+            			     		
+        				     }
+        				     
+
     					 }catch(NumberFormatException er) {
     						 checkinput.setVisible(true);
+    						 checkname.setVisible(false);
     						 no_input.setVisible(false);
     						 success.setVisible(false);
     					 }
     			          
      				     
-    					 getDataAccount(input_name,input_username,input_password,input_address,input_age,input_gender);   
-    					 success.setVisible(true);
-    					 checkinput.setVisible(false);
-						 no_input.setVisible(false);
+    					 
     				     }
     			 }
     		 });

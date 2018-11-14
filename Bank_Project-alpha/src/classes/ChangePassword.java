@@ -25,46 +25,10 @@ public class ChangePassword {
 	public ChangePassword(int id) {
 		mainframe=new Frame("Change Password");
 		mainframe.setSize(600,600);
-		mainframe.addWindowListener(new WindowListener() {
+		mainframe.addWindowListener(new WindowAdapter() {
 	   		 public void windowClosing(WindowEvent w) {	   			 
 	   			mainframe.dispose();
 	   		 }
-
-				@Override
-				public void windowOpened(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowClosed(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowIconified(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowDeiconified(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowActivated(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowDeactivated(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
 	   	     });
 		
 		//Label

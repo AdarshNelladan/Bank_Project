@@ -97,7 +97,7 @@ public class Statement {
 			double v=itr_value.next();
 			String v1=new BigDecimal(v).toPlainString();
 			stat_value[i]= new JLabel();
-			if (s.equals("DEPOSIT")) {
+			if (s.equals("DEPOSIT") || s.equals("CREDITED")) {
 				stat_value[i].setText("+"+v1+"");
 			}
 			else {

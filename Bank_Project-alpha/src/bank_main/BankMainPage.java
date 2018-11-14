@@ -18,6 +18,7 @@ public class BankMainPage {
 	 */
 	Frame mainframe;
 	Button balance_button,statement_button,chgpswd_button,deposit_button,withdraw_button,details_button;
+	Button transfer_button,delete_button,signout;
 	Label welcome_label;
 	SqlFunctions sql=new SqlFunctions();
 	public String balance;
@@ -158,6 +159,48 @@ public class BankMainPage {
    			 }
    		 });
         mainframe.add(details_button);
+        transfer_button=new Button("Transfer");
+		transfer_button.setBounds(20, 500, 300, 50);
+		transfer_button.addActionListener(new ActionListener() {
+   			 public void actionPerformed(ActionEvent e) {
+   				EventQueue.invokeLater(new Runnable() {
+   					public void run() {
+   						try {
+                            new Transfer(id);
+   						} catch (Exception e) {
+   							e.printStackTrace();
+   						}
+   					}
+   				});
+   			 }
+   		 });
+        mainframe.add(transfer_button);
+        delete_button=new Button("Delete Account");
+		delete_button.setBounds(700, 500, 300, 50);
+		delete_button.addActionListener(new ActionListener() {
+   			 public void actionPerformed(ActionEvent e) {
+   				EventQueue.invokeLater(new Runnable() {
+   					public void run() {
+   						try {
+                            new DeleteAccount(id);
+   						} catch (Exception e) {
+   							e.printStackTrace();
+   						}
+   					}
+   				});
+
+   			 }
+   		 });
+        mainframe.add(delete_button);
+        signout=new Button("Signout");
+		signout.setBounds(350, 600, 300, 50);
+		signout.addActionListener(new ActionListener() {
+   			 public void actionPerformed(ActionEvent e) {
+                 new WelcomePage();
+   				 mainframe.dispose();  			 
+   			 }	
+   		 });
+        mainframe.add(signout);
 	}
 
 }
