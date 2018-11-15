@@ -6,9 +6,9 @@ import java.util.*;
 import classes.DialogManagement.ExceptionDialog;
 
 public class SqlFunctions {
-    public static String database="local";
+    public static String database="online";
 	static Statement stmt=null;
-	private final static String DB="test";
+	private final static String DB="bank_project";
     public double bal;
 	public String error;
 	static Connection con=null;
@@ -28,8 +28,8 @@ public class SqlFunctions {
 		            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/"+DB+"", "root", "adarsh");
 	            }
 	            else {
-	            	con=DriverManager.getConnection("jdbc:mysql://www.db4free.net:3306/bankprotest", "imcatest", "imcatest");
-	            	//con=DriverManager.getConnection("jdbc:mysql://www.db4free.net:3306/bank_project", "imca17006", "imca17006");
+	            	//con=DriverManager.getConnection("jdbc:mysql://www.db4free.net:3306/bankprotest", "imcatest", "imcatest");
+	            	con=DriverManager.getConnection("jdbc:mysql://www.db4free.net:3306/bank_project", "imca17006", "imca17006");
 	            }
 	            stmt=con.createStatement();
 
