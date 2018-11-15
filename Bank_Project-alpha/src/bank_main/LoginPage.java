@@ -1,7 +1,7 @@
 /**  Login Page
  * 
  */
-package classes;
+package bank_main;
 
 /**
  * @author Adarsh
@@ -9,8 +9,6 @@ package classes;
  */
 import java.awt.*;
 import java.awt.event.*;
-
-import bank_main.*;
 import classes.DialogManagement.ExceptionDialog;
 import sql.SqlFunctions;
 public class LoginPage  {

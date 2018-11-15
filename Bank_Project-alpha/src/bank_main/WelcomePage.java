@@ -3,7 +3,6 @@ package bank_main;
 import java.awt.*;
 import java.awt.event.*;
 import classes.CreateAccount;
-import classes.LoginPage;
 import sql.SqlFunctions;
 
 public class WelcomePage extends Frame {
