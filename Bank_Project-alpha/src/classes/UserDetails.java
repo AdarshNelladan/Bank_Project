@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class UserDetails{
+public class UserDetails extends SqlFunctions{
 
 	SqlFunctions sql =new SqlFunctions();
 	private JFrame frame;

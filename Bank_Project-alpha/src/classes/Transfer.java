@@ -1,7 +1,6 @@
 package classes;
 import java.awt.*;
 import java.awt.event.*;
-
 import classes.DialogManagement.ExceptionDialog;
 import sql.SqlFunctions;
 public class Transfer {

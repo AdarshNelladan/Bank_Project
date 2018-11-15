@@ -16,7 +16,7 @@ public class CreateAccount extends Frame  {
      private TextField name_field,pass_field,age_field,username_field;
      private TextArea address_area;
      private Label name_label,pass_label,age_label,gender_label,address_label,username_label,no_input,checkinput,success,head,checkname;
-     private Label agelimit;
+     private Label agelimit,checkusername,checkusrnmsp;
      private Button create_button,discard_button;
      private Checkbox agree;
      private CheckboxGroup gender_box;
@@ -27,47 +27,11 @@ public class CreateAccount extends Frame  {
         	 setTitle("Create Account");
         	 setFont(new Font("SansSerif",Font.PLAIN,20));
         	 setBackground(Color.LIGHT_GRAY);
-        	 addWindowListener(new WindowListener() {
+        	 addWindowListener(new WindowAdapter() {
         		 public void windowClosing(WindowEvent w) {
         			 dispose();
         			 new WelcomePage();
         		 }
-
-				@Override
-				public void windowOpened(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowClosed(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowIconified(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowDeiconified(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowActivated(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowDeactivated(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
         	 });
      		 setSize(1028,960);
      	     setLayout(null);
@@ -121,7 +85,17 @@ public class CreateAccount extends Frame  {
     		 checkname.setVisible(false);
     		 checkname.setForeground(Color.RED);
     		 add(checkname);
+    		 checkusername=new Label("User Name already taken.");
+    		 checkusername.setBounds(20, 800, 1000, 60);
+    		 checkusername.setVisible(false);
+    		 checkusername.setForeground(Color.RED);
+    		 add(checkusername);
     		 
+    		 checkusrnmsp=new Label("User Name should not contain spaces!");
+    		 checkusrnmsp.setBounds(20, 800, 1000, 60);
+    		 checkusrnmsp.setVisible(false);
+    		 checkusrnmsp.setForeground(Color.RED);
+    		 add(checkusrnmsp);
  
     		 //TextArea
     		 address_area=new TextArea();
@@ -152,18 +126,13 @@ public class CreateAccount extends Frame  {
     		 create_button.addActionListener(new ActionListener() {
     			 public void actionPerformed(ActionEvent e) {
     				 if(name_field.getText().equals("") || username_field.getText().equals("") || pass_field.getText().equals("") || address_area.getText().equals("") || age_field.getText().isEmpty()==true ) {
-    			         no_input.setVisible(true);
-    			         checkinput.setVisible(false);
-    			         success.setVisible(false);
-    			         checkname.setVisible(false);
-    			         agelimit.setVisible(false);
+    			         visibility("noinput");
     				 }
     				 else if (name_field.getText().matches(".*\\d+.*")) {
-    					 checkinput.setVisible(false);
-						 checkname.setVisible(true);
-						 no_input.setVisible(false);
-						 success.setVisible(false);
-						 agelimit.setVisible(false);
+						 visibility("checkname");
+    				 }
+    				 else if (username_field.getText().matches(".*\\s+.*")) {
+    					 visibility("usrspc");
     				 }
     				 else {
     					 try {
@@ -175,29 +144,25 @@ public class CreateAccount extends Frame  {
             			     	 input_age= Integer.parseInt(age_field.getText()); 
             			     	 
             			     	 if(input_age<18) {
-            			     		success.setVisible(false);
-               					    checkinput.setVisible(false);
-               					    checkname.setVisible(false);
-           						    no_input.setVisible(false); 
-           						    agelimit.setVisible(true);
+           						    visibility("agelimit");
             			     	 }
             			     	 else {
-                				     getDataAccount(input_name,input_username,input_password,input_address,input_age,input_gender);   
-                					 success.setVisible(true);
-                					 checkinput.setVisible(false);
-                					 checkname.setVisible(false);
-            						 no_input.setVisible(false); 
-            						 agelimit.setVisible(false);
+            			     		 int accexist=sq.getId(input_username);
+            			     		 if(accexist!=0) {
+               						    visibility("checkuser");
+            			     		 }
+            			     		 else {
+            			     			getDataAccount(input_name,input_username,input_password,input_address,input_age,input_gender);   
+               						    visibility("success");
+            			     		 }
+                				     
             			     	 }
             			     		
         				     }
         				     
 
     					 }catch(NumberFormatException er) {
-    						 checkinput.setVisible(true);
-    						 checkname.setVisible(false);
-    						 no_input.setVisible(false);
-    						 success.setVisible(false);
+    						 visibility("checkinput");
     					 }
     			          
      				     
@@ -300,7 +265,29 @@ public class CreateAccount extends Frame  {
         
 		 
 	 }
-    public void windowClosing(WindowEvent e) {  
-	    dispose();  
+    public void visibility(String choice) {
+    	    success.setVisible(false);
+		    checkinput.setVisible(false);
+		    checkname.setVisible(false);
+		    no_input.setVisible(false); 
+		    agelimit.setVisible(false);
+		    checkusername.setVisible(false);
+		    checkusrnmsp.setVisible(false);
+    	switch(choice) {
+    	case "success" :  success.setVisible(true);
+    	                  break;
+    	case "checkinput" : checkinput.setVisible(true);
+    	                    break;
+    	case "checkname" : checkname.setVisible(true);
+    	                   break;
+    	case "noinput" : no_input.setVisible(true);
+    	                 break;
+    	case "agelimit" : agelimit.setVisible(true);
+                         break;
+    	case "checkuser" : checkusername.setVisible(true);
+                         break;
+    	case "usrspc" : checkusrnmsp.setVisible(true);
+    	                break;
+    	}
     }
 }

@@ -5,6 +5,7 @@ package classes;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import classes.DialogManagement.ExceptionDialog;
 import sql.SqlFunctions;
 
@@ -27,47 +28,11 @@ public class Deposit {
 		mainframe=new Frame("Deposit");
 		mainframe.setSize(400, 400);
 		mainframe.setBackground(Color.LIGHT_GRAY);
-		mainframe.addWindowListener(new WindowListener() {
+		mainframe.addWindowListener(new WindowAdapter() {
 	   		 public void windowClosing(WindowEvent w) {	   			 
 	   			mainframe.dispose();
 	   		 }
-
-				@Override
-				public void windowOpened(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowClosed(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowIconified(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowDeiconified(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowActivated(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowDeactivated(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-	   	     });
+	   	  });
 		amt_label=new Label("Enter Amount :");
 		amt_label.setBounds(10, 150, 150, 30);
 		amt_label.setFont(new Font("SansSerif",Font.BOLD,17));
@@ -133,5 +98,7 @@ public class Deposit {
 		mainframe.setLayout(null);
 		mainframe.setVisible(true);
 	}
+
+	
 
 }
