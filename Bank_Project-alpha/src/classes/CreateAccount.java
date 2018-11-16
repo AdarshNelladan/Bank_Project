@@ -16,7 +16,7 @@ public class CreateAccount extends Frame  {
      private TextField name_field,pass_field,age_field,username_field;
      private TextArea address_area;
      private Label name_label,pass_label,age_label,gender_label,address_label,username_label,no_input,checkinput,success,head,checkname;
-     private Label agelimit,checkusername,checkusrnmsp;
+     private Label agelimit,checkusername,checkusrnmsp,maxage;
      private Button create_button,discard_button;
      private Checkbox agree;
      private CheckboxGroup gender_box;
@@ -96,6 +96,11 @@ public class CreateAccount extends Frame  {
     		 checkusrnmsp.setVisible(false);
     		 checkusrnmsp.setForeground(Color.RED);
     		 add(checkusrnmsp);
+    		 maxage=new Label("The data seems to be not authentic! Check your input");
+    		 maxage.setBounds(20, 800, 1000, 60);
+    		 maxage.setVisible(false);
+    		 maxage.setForeground(Color.RED);
+    		 add(maxage);
  
     		 //TextArea
     		 address_area=new TextArea();
@@ -145,6 +150,9 @@ public class CreateAccount extends Frame  {
             			     	 
             			     	 if(input_age<18) {
            						    visibility("agelimit");
+            			     	 }
+            			     	 else if (input_age>120) {
+            			     		 visibility("maxage");
             			     	 }
             			     	 else {
             			     		 int accexist=sq.getId(input_username);
@@ -273,6 +281,7 @@ public class CreateAccount extends Frame  {
 		    agelimit.setVisible(false);
 		    checkusername.setVisible(false);
 		    checkusrnmsp.setVisible(false);
+		    maxage.setVisible(false);
     	switch(choice) {
     	case "success" :  success.setVisible(true);
     	                  break;
@@ -288,6 +297,8 @@ public class CreateAccount extends Frame  {
                          break;
     	case "usrspc" : checkusrnmsp.setVisible(true);
     	                break;
+    	case "maxage" : maxage.setVisible(true);
+    		            break;
     	}
     }
 }
