@@ -58,8 +58,13 @@ public class SqlFunctions {
     }
     public int checkAndProceed(String name,String ps){
     	int flag=0;
+    	
     	try {
-			check_rs= stmt.executeQuery("select ACC_NO from "+DB+".user_account where USER_NAME='"+name+"' AND PASSWORD='"+ps+"';");
+    		PreparedStatement pstmt=con.prepareStatement("select ACC_NO from "+DB+".user_account where USER_NAME=? AND PASSWORD=?;"); 
+			//check_rs= stmt.executeQuery("select ACC_NO from "+DB+".user_account where USER_NAME='"+name+"' AND PASSWORD='"+ps+"';");
+    		pstmt.setString(1, name);
+    		pstmt.setString(2, ps);
+    		check_rs=pstmt.executeQuery();
 			while(check_rs.next()) {
 				
 				if(check_rs.getString(1).isEmpty()==false) {
