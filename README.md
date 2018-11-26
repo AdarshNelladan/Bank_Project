@@ -1,6 +1,9 @@
 # Bank_Project
 
-Done by Adarsh Mohan
+Done by Adarsh Mohan,Abhiram Praveen,Anadhakrishna 
+
+Submitting to Mr. Vinayak Hegde, Assistant Professor,
+Amrita School Of Arts and Sciences
 
 Main program : BankProject.java
 
