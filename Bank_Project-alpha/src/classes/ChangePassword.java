@@ -9,6 +9,7 @@ import java.awt.event.*;
 import sql.SqlFunctions;
 
 /**
+ * Class to change password
  * @author Adarsh
  *
  */
