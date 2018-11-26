@@ -52,6 +52,7 @@ public class SqlFunctions {
      * @param address
      * @param age
      * @param gender
+     * Also using exception handling
      */
     public void create(String name,String username,String ps,String address,int age,String gender) {
     	try {
