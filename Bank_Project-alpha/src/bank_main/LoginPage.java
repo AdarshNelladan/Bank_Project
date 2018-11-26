@@ -4,7 +4,8 @@
 package bank_main;
 
 /**
- * @author Adarsh
+ * class for login page
+ * @author Adarsh Anandhakrishna Abhiram
  *
  */
 import java.awt.*;
