@@ -31,7 +31,7 @@ public class UserDetails extends SqlFunctions{
 		frame = new JFrame("User Details");
 		frame.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		frame.setBounds(100, 100, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		SpringLayout springLayout = new SpringLayout();
 		frame.getContentPane().setLayout(springLayout);
 		frame.setVisible(true);

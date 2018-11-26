@@ -5,6 +5,7 @@ package classes;
 
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 import sql.SqlFunctions;
 import bank_main.WelcomePage;
 public class CreateAccount extends Frame  {
@@ -132,6 +133,7 @@ public class CreateAccount extends Frame  {
     			 public void actionPerformed(ActionEvent e) {
     				 if(name_field.getText().equals("") || username_field.getText().equals("") || pass_field.getText().equals("") || address_area.getText().equals("") || age_field.getText().isEmpty()==true ) {
     			         visibility("noinput");
+    			         JOptionPane.showMessageDialog(null, "No Input", "Error", JOptionPane.ERROR_MESSAGE);
     				 }
     				 else if (name_field.getText().matches(".*\\d+.*")) {
 						 visibility("checkname");

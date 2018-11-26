@@ -6,6 +6,8 @@ package classes;
 import java.awt.*;
 import java.awt.event.*;
 
+import javax.swing.JOptionPane;
+
 import classes.DialogManagement.ExceptionDialog;
 import sql.SqlFunctions;
 
@@ -66,10 +68,17 @@ public class Deposit {
 				 try {
 					 amount=Double.parseDouble(amt_field.getText());
 					 if(amount>0) {
+						 if(amount<1000000000) {
+							 
 							sql.deposit(id, amount);
 							empty.setVisible(false);
 							success.setVisible(true);
-						}
+						  }
+						 else {
+							 JOptionPane.showMessageDialog(null, "Amount above limit,contact bank for assistance", "Error:Limit reached", JOptionPane.INFORMATION_MESSAGE);
+						 }
+						 
+					 }
 					 else {
 						 empty.setVisible(true);
 						 success.setVisible(false);

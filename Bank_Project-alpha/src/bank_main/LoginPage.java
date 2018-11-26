@@ -9,7 +9,7 @@ package bank_main;
  */
 import java.awt.*;
 import java.awt.event.*;
-import classes.DialogManagement.ExceptionDialog;
+import javax.swing.JOptionPane;
 import sql.SqlFunctions;
 public class LoginPage  {
 	int res=0;
@@ -24,47 +24,12 @@ public class LoginPage  {
    	     
        	 fr1=new Frame("Login");
        	 fr1.setBackground(Color.LIGHT_GRAY);
-       	 fr1.addWindowListener(new WindowListener() {
+       	 fr1.addWindowListener(new WindowAdapter() {
        		 public void windowClosing(WindowEvent w) {
        			 fr1.dispose();
        			 new WelcomePage();
        		 }
 
-				@Override
-				public void windowOpened(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowClosed(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowIconified(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowDeiconified(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowActivated(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowDeactivated(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
        	 });
          fr1.setSize(800,600);
          fr1.setFont(new Font("Tahoma",Font.BOLD,16));
@@ -136,7 +101,7 @@ public class LoginPage  {
 	    this.input_password=input_password;
 
 	    if(input_name.isEmpty() || input_password.isEmpty()) {
-	    	new ExceptionDialog("Null input not accepted!");
+	    	JOptionPane.showMessageDialog(null, "No Input", "Error", JOptionPane.ERROR_MESSAGE);
 	    }
 	    else {
 	    	int check=sq.checkName(input_name);
