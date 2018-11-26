@@ -86,7 +86,7 @@ public class CreateAccount extends Frame  {
     		 checkname.setVisible(false);
     		 checkname.setForeground(Color.RED);
     		 add(checkname);
-    		 checkusername=new Label("User Name already taken.");
+    		 checkusername=new Label("User Name already exist.");
     		 checkusername.setBounds(20, 800, 1000, 60);
     		 checkusername.setVisible(false);
     		 checkusername.setForeground(Color.RED);

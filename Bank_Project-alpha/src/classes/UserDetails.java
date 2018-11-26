@@ -42,50 +42,50 @@ public class UserDetails extends SqlFunctions{
 		
 		JLabel name = new JLabel("Name              :");
 		name.setFont(new Font("SansSerif", Font.BOLD, 20));
-		springLayout.putConstraint(SpringLayout.NORTH, name, 114, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, name, 50, SpringLayout.WEST, frame.getContentPane());
 		frame.getContentPane().add(name);
 		
 		JLabel user = new JLabel("User Name      :");
-		springLayout.putConstraint(SpringLayout.NORTH, user, 31, SpringLayout.SOUTH, name);
-		springLayout.putConstraint(SpringLayout.WEST, user, 0, SpringLayout.WEST, name);
+		springLayout.putConstraint(SpringLayout.WEST, user, 48, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, name, 0, SpringLayout.WEST, user);
 		user.setFont(new Font("SansSerif", Font.BOLD, 20));
 		frame.getContentPane().add(user);
 		
 		JLabel age = new JLabel("Age                 :");
-		age.setFont(new Font("SansSerif", Font.BOLD, 20));
-		springLayout.putConstraint(SpringLayout.NORTH, age, 31, SpringLayout.SOUTH, user);
 		springLayout.putConstraint(SpringLayout.WEST, age, 50, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, user, -17, SpringLayout.NORTH, age);
+		age.setFont(new Font("SansSerif", Font.BOLD, 20));
 		frame.getContentPane().add(age);
 		
 		JLabel gender = new JLabel("Gender           :");
-		gender.setFont(new Font("SansSerif", Font.BOLD, 20));
 		springLayout.putConstraint(SpringLayout.NORTH, gender, 24, SpringLayout.SOUTH, age);
-		springLayout.putConstraint(SpringLayout.WEST, gender, 0, SpringLayout.WEST, name);
+		springLayout.putConstraint(SpringLayout.WEST, gender, 50, SpringLayout.WEST, frame.getContentPane());
+		gender.setFont(new Font("SansSerif", Font.BOLD, 20));
 		frame.getContentPane().add(gender);
 		
 		JLabel address = new JLabel("Address          :");
+		springLayout.putConstraint(SpringLayout.WEST, address, 50, SpringLayout.WEST, frame.getContentPane());
 		address.setFont(new Font("SansSerif", Font.BOLD, 20));
 		springLayout.putConstraint(SpringLayout.NORTH, address, 21, SpringLayout.SOUTH, gender);
-		springLayout.putConstraint(SpringLayout.WEST, address, 0, SpringLayout.WEST, name);
 		frame.getContentPane().add(address);
 		
 		JLabel name_det = new JLabel(sql.name);
+		springLayout.putConstraint(SpringLayout.WEST, name_det, 53, SpringLayout.EAST, name);
+		springLayout.putConstraint(SpringLayout.NORTH, name, -1, SpringLayout.NORTH, name_det);
+		springLayout.putConstraint(SpringLayout.NORTH, name_det, 140, SpringLayout.NORTH, frame.getContentPane());
 		name_det.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		springLayout.putConstraint(SpringLayout.WEST, name_det, 51, SpringLayout.EAST, name);
-		springLayout.putConstraint(SpringLayout.SOUTH, name_det, 0, SpringLayout.SOUTH, name);
 		frame.getContentPane().add(name_det);
 		
 		JLabel user_det = new JLabel(sql.username);
-		user_det.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		springLayout.putConstraint(SpringLayout.NORTH, user_det, 1, SpringLayout.NORTH, user);
 		springLayout.putConstraint(SpringLayout.WEST, user_det, 0, SpringLayout.WEST, name_det);
-		springLayout.putConstraint(SpringLayout.SOUTH, user_det, 0, SpringLayout.SOUTH, user);
+		user_det.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frame.getContentPane().add(user_det);
 		
 		JLabel age_det = new JLabel(""+sql.age+"");
+		springLayout.putConstraint(SpringLayout.NORTH, age_det, 64, SpringLayout.SOUTH, name_det);
+		springLayout.putConstraint(SpringLayout.NORTH, age, -1, SpringLayout.NORTH, age_det);
 		age_det.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		springLayout.putConstraint(SpringLayout.WEST, age_det, 0, SpringLayout.WEST, name_det);
-		springLayout.putConstraint(SpringLayout.SOUTH, age_det, 0, SpringLayout.SOUTH, age);
 		frame.getContentPane().add(age_det);
 		
 		JLabel gender_det = new JLabel(sql.gender);
@@ -98,7 +98,7 @@ public class UserDetails extends SqlFunctions{
 		springLayout.putConstraint(SpringLayout.NORTH, address_det, 25, SpringLayout.SOUTH, gender_det);
 		springLayout.putConstraint(SpringLayout.WEST, address_det, 50, SpringLayout.EAST, address);
 		springLayout.putConstraint(SpringLayout.SOUTH, address_det, 184, SpringLayout.SOUTH, gender_det);
-		address_det.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		address_det.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		address_det.setEditable(false);
 		address_det.setBackground(SystemColor.controlHighlight);
 		frame.getContentPane().add(address_det);
@@ -122,5 +122,17 @@ public class UserDetails extends SqlFunctions{
 		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, 419, SpringLayout.WEST, frame.getContentPane());
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 15));
 		frame.getContentPane().add(btnNewButton);
+		
+		JLabel lblAccNo = new JLabel("ACC NO          :");
+		lblAccNo.setFont(new Font("SansSerif", Font.BOLD, 20));
+		springLayout.putConstraint(SpringLayout.WEST, lblAccNo, 0, SpringLayout.WEST, name);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblAccNo, -21, SpringLayout.NORTH, name);
+		frame.getContentPane().add(lblAccNo);
+		
+		JLabel lblaccnodet = new JLabel(""+sql.accno+"");
+		lblaccnodet.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		springLayout.putConstraint(SpringLayout.NORTH, lblaccnodet, 0, SpringLayout.NORTH, lblAccNo);
+		springLayout.putConstraint(SpringLayout.WEST, lblaccnodet, 0, SpringLayout.WEST, name_det);
+		frame.getContentPane().add(lblaccnodet);
 	}
 }

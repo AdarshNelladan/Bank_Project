@@ -6,7 +6,7 @@ import java.util.*;
 import classes.DialogManagement.ExceptionDialog;
 
 public class SqlFunctions {
-    public static String database="online";
+    public static String database="local";
 	static Statement stmt=null;
 	private final static String DB="bank_project";
     public double bal;
@@ -14,7 +14,7 @@ public class SqlFunctions {
 	static Connection con=null;
 	ResultSet check_rs=null,check_bal=null,check_ps=null;
     public String name,username,gender,address;
-    public int age;
+    public int age,accno;
 	int idint;
 	public LinkedList<String> type=new LinkedList<String>();
 	public LinkedList<Double> value=new LinkedList<Double>();
@@ -233,6 +233,7 @@ public class SqlFunctions {
 			ResultSet rs_data = stmt.executeQuery("select * from "+DB+".user_account where ACC_NO="+id+";");
 			
 			while(rs_data.next()) {
+				accno=Integer.parseInt(rs_data.getString("ACC_NO"));
 				name=rs_data.getString("NAME");
 				username=rs_data.getString("USER_NAME");
 				age=Integer.parseInt(rs_data.getString("AGE"));

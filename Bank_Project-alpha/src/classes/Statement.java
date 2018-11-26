@@ -92,7 +92,8 @@ public class Statement {
 			String s=itr_type.next();
 			stat_type[i]= new JLabel();
 			stat_type[i].setText(s);
-			stat_type[i].setBounds(49, y, 80, 16);
+			stat_type[i].setBounds(49, y, 110, 16);
+			stat_type[i].setFont(new Font("Segoe UI", Font.BOLD, 15));
 			panel.add(stat_type[i]);
 			double v=itr_value.next();
 			String v1=new BigDecimal(v).toPlainString();
@@ -103,7 +104,8 @@ public class Statement {
 			else {
 				stat_value[i].setText("-"+v1+"");
 			}
-			stat_value[i].setBounds(396, y, 90, 16);
+			stat_value[i].setBounds(396, y, 110, 16);
+			stat_value[i].setFont(new Font("Segoe UI", Font.BOLD, 14));
 			panel.add(stat_value[i]);
 			i++;
 			y+=30;
