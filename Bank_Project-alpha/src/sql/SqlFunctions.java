@@ -44,6 +44,15 @@ public class SqlFunctions {
 	    }
 	
 
+    /**
+     * method to create the account
+     * @param name
+     * @param username
+     * @param ps
+     * @param address
+     * @param age
+     * @param gender
+     */
     public void create(String name,String username,String ps,String address,int age,String gender) {
     	try {
     		
@@ -56,6 +65,12 @@ public class SqlFunctions {
 			new ExceptionDialog("Error Establishing a Connection");
 		}
     }
+    /**
+     * method to check the name and password to login
+     * @param name
+     * @param ps
+     * @return
+     */
     public int checkAndProceed(String name,String ps){
     	int flag=0;
     	
@@ -87,6 +102,11 @@ public class SqlFunctions {
 			return 0;    	
     }
     
+    /**
+     * method to check the password
+     * @param id
+     * @return
+     */
     public String passwordCheck(int id) {
     	String pass=null;
     	try {
@@ -103,6 +123,11 @@ public class SqlFunctions {
 		}
     	return pass;
     }
+    /**
+     * method to change the password
+     * @param id
+     * @param password
+     */
     public void passwordChange(int id,String password) {
     	try {
     		stmt=con.createStatement();
@@ -113,6 +138,12 @@ public class SqlFunctions {
 			new ExceptionDialog("Error in SQL");
 		}
     }
+    /**
+     * method to check the balance
+     * @param id
+     * @return bal1
+     */
+
     public String balanceCheck(int id) {
     	
     	
@@ -131,6 +162,10 @@ public class SqlFunctions {
     	String bal1 =new BigDecimal(bal).toPlainString();
     	return bal1;
     }
+    /**
+     * method to get statement of the transfers done
+     * @param id
+     */
     public void statement(int id) {
     	  Statement stmt_rev;
     	  String uname=getUserName(id);
@@ -153,6 +188,11 @@ public class SqlFunctions {
 
     	  
     }
+    /**
+     * method to deposit money
+     * @param id
+     * @param amt
+     */
     public void deposit(int id,double amt) {
     	String uname=getUserName(id);
     	try {
@@ -165,6 +205,11 @@ public class SqlFunctions {
 			e.printStackTrace();
 		}
     }
+    /**
+     * method to withdraw money
+     * @param id
+     * @param amt
+     */
     public void withdraw(int id,double amt) {
     	String uname=getUserName(id);
     	try {
@@ -177,6 +222,10 @@ public class SqlFunctions {
 			new ExceptionDialog("Error Establishing a Connection");
 		}
     }
+    /**
+     * method to get userdetails
+     * @param id
+     */
     public void userDetails(int id) {
     	
     	try {
@@ -196,6 +245,11 @@ public class SqlFunctions {
 		}
     }
     
+    /**
+     * method to get name
+     * @param id
+     * @return
+     */
     public String getName(int id) {
     	String getname="";
     	try {
@@ -211,6 +265,11 @@ public class SqlFunctions {
     	return getname;
     }
     
+    /**
+     * method to get username
+     * @param id
+     * @return
+     */
     public String getUserName(int id) {
     	String getname="";
     	try {
@@ -226,6 +285,11 @@ public class SqlFunctions {
     	return getname;
     }
     
+    /**
+     * method to get the ID
+     * @param name
+     * @return
+     */
     public int getId(String name) {
     	int id=0;
     	try {
@@ -240,6 +304,11 @@ public class SqlFunctions {
 		}
     	return id;
     }
+    /**
+     * method to check the given name
+     * @param name
+     * @return
+     */
     public int checkName(String name) {
     	int id=0;
     	try {
@@ -254,7 +323,9 @@ public class SqlFunctions {
 		}
     	return id;
     }
-    
+    /**
+     * method to dissconnect
+     */
     public static void disconnect() {
     	try {
 			con.close();
@@ -265,6 +336,12 @@ public class SqlFunctions {
     		e1.printStackTrace();
     	}
     }
+    /**
+     * method to transfer from one account to another using userID
+     * @param id
+     * @param toid
+     * @param amt
+     */
     public void transferById(int id,int toid,double amt) {
     	 String getname=getUserName(toid);
     	 String name=getName(toid);
@@ -296,6 +373,12 @@ public class SqlFunctions {
     	 }
     }
     
+    /**
+     * method to transfer from one account to another using username
+     * @param id
+     * @param name
+     * @param amt
+     */
     public void transferByName(int id,String name,double amt) {
     	int getid=getId(name);
     	String toname=getName(getid);
@@ -326,6 +409,10 @@ public class SqlFunctions {
     	}
     	
     }
+    /**
+     * method to delete account
+     * @param id
+     */
     public void deleteAccount(int id) {
     	try {
 			stmt.executeUpdate("DELETE FROM "+DB+".user_account WHERE (ACC_NO = '"+id+"');");
@@ -335,6 +422,12 @@ public class SqlFunctions {
 			e.printStackTrace();
 		}
     }
+    /**
+     * 
+     * 
+     * @param er
+     * @return
+     */
     public String errorCreation(String er) {
     	return er;
     }
