@@ -11,8 +11,12 @@ import java.awt.*;
 import java.awt.event.*;
 import classes.*;
 import sql.SqlFunctions;
-public class BankMainPage {
+public class BankMainPage extends Frame implements Runnable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 
 	 */
@@ -22,12 +26,13 @@ public class BankMainPage {
 	Label welcome_label;
 	SqlFunctions sql=new SqlFunctions();
 	public String balance;
+	int x=0,y=360,speed=3;
 	public BankMainPage(int id) {
 		// TODO Auto-generated constructor stub
-		mainframe=new Frame("Welcome");
-		mainframe.setBackground(Color.LIGHT_GRAY);
-		mainframe.setFont(new Font("Tahoma",Font.BOLD,16));
-		mainframe.addWindowListener(new WindowListener() {
+		setTitle("Welcome");
+		setBackground(Color.LIGHT_GRAY);
+		setFont(new Font("Tahoma",Font.BOLD,16));
+		addWindowListener(new WindowListener() {
 	   		 public void windowClosing(WindowEvent w) {
 	   			 
 	   			 try {
@@ -35,7 +40,7 @@ public class BankMainPage {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-	   			mainframe.dispose();
+	   			dispose();
 	   			System.exit(0);
 	   		 }
 
@@ -75,9 +80,11 @@ public class BankMainPage {
 					
 				}
 	   	     });
-		mainframe.setSize(1028, 768);
-		mainframe.setLayout(null);
-		mainframe.setVisible(true);
+		setSize(1028, 768);
+		setLayout(null);
+		setVisible(true);
+		Thread t=new Thread(this);
+		t.start();
 		
 		
 		//Label
@@ -85,7 +92,7 @@ public class BankMainPage {
 		welcome_label.setFont(new Font("Tahoma",Font.BOLD,34));
 		welcome_label.setText("Welcome "+sql.getName(id)+"!");
 		welcome_label.setBounds(350, 50, 600, 50);
-		mainframe.add(welcome_label);
+		add(welcome_label);
 
 		//Buttons
 		balance_button=new Button("Check Balance");
@@ -96,7 +103,7 @@ public class BankMainPage {
    				 new Balance(balance);
    			 }
    		 });
-        mainframe.add(balance_button);        
+        add(balance_button);        
         statement_button=new Button("Statement");
 		statement_button.setBounds(700, 200, 300, 50);
 		statement_button.addActionListener(new ActionListener() {
@@ -113,7 +120,7 @@ public class BankMainPage {
    				});
    			 }
    		 });
-        mainframe.add(statement_button);
+        add(statement_button);
         
         chgpswd_button=new Button("Change Password");
 		chgpswd_button.setBounds(700, 400, 300, 50);
@@ -123,7 +130,7 @@ public class BankMainPage {
 
    			 }
    		 });
-        mainframe.add(chgpswd_button);
+        add(chgpswd_button);
         
         deposit_button=new Button("Deposit");
 		deposit_button.setBounds(20, 300, 300, 50);
@@ -132,7 +139,7 @@ public class BankMainPage {
                    new Deposit(id);
    			 }
    		 });
-        mainframe.add(deposit_button);
+        add(deposit_button);
         
         withdraw_button=new Button("Withdraw");
 		withdraw_button.setBounds(700, 300, 300, 50);
@@ -141,7 +148,7 @@ public class BankMainPage {
                     new Withdraw(id);
    			 }
    		 });
-        mainframe.add(withdraw_button);
+        add(withdraw_button);
         
         details_button=new Button("User Details");
 		details_button.setBounds(20, 400, 300, 50);
@@ -158,7 +165,7 @@ public class BankMainPage {
    				});
    			 }
    		 });
-        mainframe.add(details_button);
+        add(details_button);
         transfer_button=new Button("Transfer");
 		transfer_button.setBounds(20, 500, 300, 50);
 		transfer_button.addActionListener(new ActionListener() {
@@ -174,7 +181,7 @@ public class BankMainPage {
    				});
    			 }
    		 });
-        mainframe.add(transfer_button);
+        add(transfer_button);
         delete_button=new Button("Delete Account");
 		delete_button.setBounds(700, 500, 300, 50);
 		delete_button.addActionListener(new ActionListener() {
@@ -191,16 +198,44 @@ public class BankMainPage {
 
    			 }
    		 });
-        mainframe.add(delete_button);
+        add(delete_button);
         signout=new Button("Signout");
 		signout.setBounds(350, 600, 300, 50);
 		signout.addActionListener(new ActionListener() {
    			 public void actionPerformed(ActionEvent e) {
                  new WelcomePage();
-   				 mainframe.dispose();  			 
+   				 dispose();  			 
    			 }	
    		 });
-        mainframe.add(signout);
+        add(signout);
+	}
+	public void paint(Graphics g) {
+		g.setColor(Color.RED);
+        g.drawArc(100, 50, 50, 50, x, 160);
+        g.drawArc(95, 45, 60, 60, y, 180);
+	}
+	public void movearc() {
+		
+		if(x>=360) {
+			x=0;
+		}
+		if(y<=0) {
+			y=360;
+		}
+		x=x+speed;
+		y=y-speed;
+		
+}
+	public void run() {
+		while(true) {
+			movearc();
+			repaint();
+			try {
+				Thread.sleep(15);
+			}catch(InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
