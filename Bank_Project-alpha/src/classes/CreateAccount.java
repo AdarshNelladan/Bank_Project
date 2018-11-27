@@ -21,7 +21,7 @@ public class CreateAccount extends Frame  {
      private Button create_button,discard_button;
      private Checkbox agree;
      private CheckboxGroup gender_box;
-     private String input_name="",input_password="",input_gender="",input_address="",input_username="";
+     private String input_name="",input_password="",input_gender="male",input_address="",input_username="";
      private int input_age=0;
      public CreateAccount(){
     	     
@@ -214,7 +214,7 @@ public class CreateAccount extends Frame  {
     		 
     		 //Checkbox
     		 gender_box=new CheckboxGroup();
-    		 Checkbox gender_male=new Checkbox("Male",gender_box,false);
+    		 Checkbox gender_male=new Checkbox("Male",gender_box,true);
     		 gender_male.setBounds(400, 350, 100, 30);
     		 gender_male.addItemListener(new ItemListener() {
 
