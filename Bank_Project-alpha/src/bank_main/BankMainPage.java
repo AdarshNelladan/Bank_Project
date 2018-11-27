@@ -210,9 +210,12 @@ public class BankMainPage extends Frame implements Runnable{
         add(signout);
 	}
 	public void paint(Graphics g) {
-		g.setColor(Color.RED);
-        g.drawArc(100, 50, 50, 50, x, 160);
-        g.drawArc(95, 45, 60, 60, y, 180);
+		super.paint(g);
+		Graphics2D g2=(Graphics2D) g;
+		g2.setColor(Color.RED);
+		g2.setStroke(new BasicStroke(3));
+        g2.drawArc(100, 50, 50, 50, x, 160);
+        g2.drawArc(95, 45, 60, 60, y, 180);
 	}
 	public void movearc() {
 		
@@ -231,7 +234,7 @@ public class BankMainPage extends Frame implements Runnable{
 			movearc();
 			repaint();
 			try {
-				Thread.sleep(15);
+				Thread.sleep(10);
 			}catch(InterruptedException e) {
 				e.printStackTrace();
 			}

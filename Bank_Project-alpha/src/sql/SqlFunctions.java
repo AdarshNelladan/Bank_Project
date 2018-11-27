@@ -3,6 +3,7 @@ package sql;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 import classes.DialogManagement.ExceptionDialog;
 
 public class SqlFunctions {
@@ -37,7 +38,8 @@ public class SqlFunctions {
 	        catch(Exception e)
 	        {
 	            e.printStackTrace();
-	            new ExceptionDialog("Error Establishing a Connection");
+	            //new ExceptionDialog("Error Establishing a Connection");
+	            JOptionPane.showMessageDialog(null, "Error Establishing a connection. Check your configuration or Internet!", "Error", JOptionPane.ERROR_MESSAGE);
 	        }
 
 	        return con;        
@@ -326,7 +328,7 @@ public class SqlFunctions {
     	return id;
     }
     /**
-     * method to dissconnect
+     * method to disconnect
      */
     public static void disconnect() {
     	try {
