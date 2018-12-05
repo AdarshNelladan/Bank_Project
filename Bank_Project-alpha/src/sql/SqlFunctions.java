@@ -7,11 +7,11 @@ import javax.swing.JOptionPane;
 import classes.DialogManagement.ExceptionDialog;
 
 public class SqlFunctions {
-    public static String database="online";
-	static Statement stmt=null;
+    private static String database="online";
+	private static Statement stmt=null;
 	private final static String DB="bank_project";
-    public double bal;
-	public String error;
+    private double bal;
+	private String error;
 	static Connection con=null;
 	ResultSet check_rs=null,check_bal=null,check_ps=null;
     public String name,username,gender,address;
@@ -334,11 +334,10 @@ public class SqlFunctions {
 			con.close();
 		} catch (NullPointerException e) {
 			// TODO Auto-generated catch block
+		} catch(SQLException e){
+
 		}
-    	catch(Exception e1) {
-    		e1.printStackTrace();
-    	}
-    }
+	}
     /**
      * method to transfer from one account to another using userID
      * @param id
