@@ -3,11 +3,12 @@
  */
 package classes;
 
+import bank_main.WelcomePage;
+import sql.SqlFunctions;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
-import sql.SqlFunctions;
-import bank_main.WelcomePage;
 public class CreateAccount extends JFrame  {
 	 /**
 	 * 
@@ -39,6 +40,7 @@ public class CreateAccount extends JFrame  {
      	     setLayout(null);
      	     setVisible(true);
      	     //Labels
+		 Font font = new Font("Sans", Font.BOLD, 18);
      	     head =new JLabel();
      	     head.setText("Create your account");
     		 head.setFont(new Font("SansSerif",Font.BOLD,30));
@@ -46,21 +48,27 @@ public class CreateAccount extends JFrame  {
     		 add(head);
     		 name_label=new JLabel("Enter Name            :");
     		 name_label.setBounds(50, 130, 200, 60);
+		 name_label.setFont(font);
     		 add(name_label);
     		 username_label=new JLabel("Enter User Name    :");
     		 username_label.setBounds(50, 180, 200, 60);
+		 username_label.setFont(font);
     		 add(username_label);
     		 pass_label=new JLabel("Enter Password      :");
     		 pass_label.setBounds(50, 230, 200, 60);
+		 pass_label.setFont(font);
     		 add(pass_label);
     		 age_label=new JLabel("Enter Age              :");
     		 age_label.setBounds(50, 280, 250, 60);
+		 age_label.setFont(font);
     		 add(age_label);
     		 address_label=new JLabel("Address                :");
     		 address_label.setBounds(50, 380, 250, 60);
+		 address_label.setFont(font);
     		 add(address_label);
     		 gender_label=new JLabel("Gender                 :");
     		 gender_label.setBounds(50, 330, 250, 60);
+		 gender_label.setFont(font);
     		 add(gender_label);
     		 no_input=new JLabel("All fields are required.Check your inputs.");
     		 no_input.setBounds(20, 800, 1000, 60);

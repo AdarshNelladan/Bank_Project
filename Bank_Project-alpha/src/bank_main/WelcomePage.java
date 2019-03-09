@@ -1,11 +1,11 @@
 package bank_main;
 
-import java.awt.*;
-import java.awt.event.*;
 import classes.CreateAccount;
-import sql.SqlFunctions;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class WelcomePage extends JFrame {
 
@@ -16,7 +16,7 @@ public class WelcomePage extends JFrame {
 
 	public WelcomePage() {
 		// TODO Auto-generated constructor stub
-		
+
 		JButton create_account_button,login_account_button;
 		 
         setTitle("Welcome to Bank");
