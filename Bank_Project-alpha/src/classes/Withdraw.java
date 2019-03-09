@@ -6,8 +6,9 @@ package classes;
 import java.awt.*;
 import java.awt.event.*;
 
-import classes.DialogManagement.ExceptionDialog;
 import sql.SqlFunctions;
+
+import javax.swing.*;
 
 /**
  * @author Adarsh
@@ -19,78 +20,38 @@ public class Withdraw {
 	 * 
 	 */
 	SqlFunctions sql=new SqlFunctions();
-	Frame mainframe;
-	Button back,with_button;
-	Label amt_label,success,fail_label,head,empty;
-	TextField amt_field;
+	JFrame mainframe;
+	JButton back,with_button;
+	JLabel amt_label,success,fail_label,head,empty;
+	JTextField amt_field;
 	double amount;
 	String bal;
 	double bal1;
 	public Withdraw(int id) {
-		mainframe=new Frame("Withdraw");
+		mainframe=new JFrame("Withdraw");
 		mainframe.setSize(600, 600);
 		mainframe.setBackground(Color.LIGHT_GRAY);
 		mainframe.setFont(new Font("SansSerif",Font.BOLD,20));
-		mainframe.addWindowListener(new WindowAdapter() {
-	   		 public void windowClosing(WindowEvent w) {	   			 
-	   			mainframe.dispose();
-	   		 }
-
-				@Override
-				public void windowOpened(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowClosed(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowIconified(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowDeiconified(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowActivated(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void windowDeactivated(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-	   	     });
-		amt_label=new Label("Enter Amount    :");
+        mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		amt_label=new JLabel("Enter Amount    :");
 		amt_label.setBounds(10, 150, 200, 30);
 		amt_label.setFont(new Font("SansSerif",Font.BOLD,20));
 		mainframe.add(amt_label);
-		success=new Label("Success");
+		success=new JLabel("Success");
 		success.setBounds(30, 400, 400, 30);
 		success.setForeground(Color.GREEN);
-		fail_label=new Label("Insufficient balance!(Note withdrawal not possible from minimum balance)");
+		fail_label=new JLabel("Insufficient balance!(Note withdrawal not possible from minimum balance)");
 		fail_label.setFont(new Font("SansSerif",Font.PLAIN,15));
 		fail_label.setBounds(30, 400, 500, 30);
 		fail_label.setForeground(Color.RED);
-		amt_field=new TextField();
+		amt_field=new JTextField();
 		amt_field.setBounds(220, 150, 250, 30);
 		mainframe.add(amt_field);
-		head=new Label("Withdraw");
+		head=new JLabel("Withdraw");
 		head.setBounds(200, 50, 400, 40);
 		head.setFont(new Font("Tahoma",Font.BOLD,34));
 		mainframe.add(head);
-		empty=new Label("Empty Field or data error!");
+		empty=new JLabel("Empty Field or data error!");
 		empty.setBounds(30, 400, 500, 30);
 		empty.setForeground(Color.RED);
 		empty.setVisible(false);
@@ -98,7 +59,7 @@ public class Withdraw {
 		
 		
 		
-		with_button=new Button("Withdraw");
+		with_button=new JButton("Withdraw");
 		with_button.setBounds(150, 300, 100, 50);
 		with_button.setFont(new Font("Tahoma",Font.BOLD,16));
 		with_button.addActionListener(new ActionListener() {
@@ -129,7 +90,7 @@ public class Withdraw {
 					
 				}catch(NumberFormatException er) {
 					empty.setVisible(true);
-					new ExceptionDialog("Error in Input!");
+					JOptionPane.showMessageDialog(null,"Error in input","Error",JOptionPane.ERROR_MESSAGE);
 					fail_label.setVisible(false);
 					success.setVisible(false);
 				}
@@ -137,7 +98,7 @@ public class Withdraw {
   			 }
 		 });
 		mainframe.add(with_button);
-		back= new Button("Back");
+		back= new JButton("Back");
 		back.setBounds(300, 300, 100, 50);
 		back.setFont(new Font("Tahoma",Font.BOLD,16));
 		back.addActionListener(new ActionListener() {

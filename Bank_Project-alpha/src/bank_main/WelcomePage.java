@@ -5,7 +5,9 @@ import java.awt.event.*;
 import classes.CreateAccount;
 import sql.SqlFunctions;
 
-public class WelcomePage extends Frame {
+import javax.swing.*;
+
+public class WelcomePage extends JFrame {
 
 	/**
 	 * 
@@ -15,72 +17,25 @@ public class WelcomePage extends Frame {
 	public WelcomePage() {
 		// TODO Auto-generated constructor stub
 		
-		Button create_account_button,login_account_button;
+		JButton create_account_button,login_account_button;
 		 
         setTitle("Welcome to Bank");
         setBackground(Color.LIGHT_GRAY);
-		addWindowListener(new WindowListener() {
-  		 public void windowClosing(WindowEvent w) {
-  			 
-  			 try {
-				SqlFunctions.disconnect();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-  			 dispose();
-  			System.exit(0);
-  		 }
-
-			@Override
-			public void windowOpened(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void windowClosed(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void windowIconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void windowDeiconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void windowActivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void windowDeactivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-  	     });
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(800,600);
 	    setLayout(null);
 	    setVisible(true);
 	    
 	    /**
-		 * Label area 
+		 * JLabel area
 		 */
-	    Label head =new Label();
+	    JLabel head =new JLabel();
 		head.setText("Welcome to Bank Of India!");
 		head.setFont(new Font("Tahoma",Font.BOLD,34));
 		head.setBounds(200, 100, 500, 50);
 		add(head);
 		
-		create_account_button=new Button("Create Account");
+		create_account_button=new JButton("Create Account");
 		create_account_button.setBounds(50, 300, 300, 60);
 		create_account_button.setFont(new Font("Tahoma",Font.BOLD,20));
 		add(create_account_button);
@@ -92,7 +47,7 @@ public class WelcomePage extends Frame {
 		});
 		
 		
-		login_account_button=new Button("Login");
+		login_account_button=new JButton("Login");
 		login_account_button.setBounds(450, 300, 300, 60);
 		login_account_button.setFont(new Font("Tahoma",Font.BOLD,20));
 		add(login_account_button);

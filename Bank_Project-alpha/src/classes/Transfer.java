@@ -1,14 +1,16 @@
 package classes;
 import java.awt.*;
 import java.awt.event.*;
-import classes.DialogManagement.ExceptionDialog;
 import sql.SqlFunctions;
+
+import javax.swing.*;
+
 public class Transfer {
 	
-    Frame mainframe;
-    Panel cardpan;
+    JFrame mainframe;
+    JPanel cardpan;
     CardLayout cardlayout;
-    Button back,idbt,namebt;
+    JButton back,idbt,namebt;
     String toname;
     int toid;
 	double idamt,nameamt;
@@ -16,22 +18,22 @@ public class Transfer {
     final static String IDBUTTON = "Using ID";
     final static String NAMEBUTTON = "Using User name";
 	public Transfer(int id) {
-		mainframe=new Frame();
+		mainframe=new JFrame();
 		mainframe.setTitle("Transfer");
 		mainframe.setLayout(null);
 		mainframe.setSize(800, 700);
 		mainframe.setVisible(true);
 		
 		//Main Buttons
-		idbt=new Button(IDBUTTON);
+		idbt=new JButton(IDBUTTON);
 		idbt.setBounds(250, 150, 100, 50);
 		idbt.setFont(new Font("Tahoma",Font.BOLD,16));
 		mainframe.add(idbt);
-		namebt=new Button(NAMEBUTTON);
+		namebt=new JButton(NAMEBUTTON);
 		namebt.setBounds(400, 150, 150, 50);
 		namebt.setFont(new Font("Tahoma",Font.BOLD,16));
 		mainframe.add(namebt);
-		back= new Button("Back");
+		back= new JButton("Back");
 		back.setBounds(650, 560, 100, 50);
 		back.setFont(new Font("Tahoma",Font.BOLD,16));
 		back.addActionListener(new ActionListener() {
@@ -43,56 +45,56 @@ public class Transfer {
 		
 
 		cardlayout = new CardLayout();
-		cardpan = new Panel();
+		cardpan = new JPanel();
 		cardpan.setLayout(cardlayout);
 
 				
 		
 		
-		Panel idpanel =new Panel();
+		JPanel idpanel =new JPanel();
 		idpanel.setLayout(null);
-		Panel namepanel =new Panel();
+		JPanel namepanel =new JPanel();
 		namepanel.setLayout(null);
 		
 
-		Label namelabel =new Label("Enter name           :");
+		JLabel namelabel =new JLabel("Enter name           :");
 		namelabel.setFont(new Font("SansSerif", Font.BOLD, 18));
 		namelabel.setBounds(10, 26, 186, 36);
 		namepanel.add(namelabel);
 		
-		Label idlabel = new Label("Enter ID/ACC No    :");
+		JLabel idlabel = new JLabel("Enter ID/ACC No    :");
 		idlabel.setFont(new Font("SansSerif", Font.BOLD, 18));
 		idlabel.setBounds(10, 28, 178, 36);
 		idpanel.add(idlabel);
 		
-		Label idamtlabel = new Label("Enter Amount        :");
+		JLabel idamtlabel = new JLabel("Enter Amount        :");
 		idamtlabel.setFont(new Font("SansSerif", Font.BOLD, 18));
 		idamtlabel.setBounds(10, 115, 178, 24);
 		idpanel.add(idamtlabel);
 		
-		TextField idtext = new TextField();
+		JTextField idtext = new JTextField();
 		idtext.setBounds(208, 28, 301, 36);
 		idpanel.add(idtext);
 		
-		TextField idamttext = new TextField();
+		JTextField idamttext = new JTextField();
 		idamttext.setBounds(208, 115, 301, 36);
 		idpanel.add(idamttext);
 
 		
-		Label nameamtlabel = new Label("Enter Amount       :");
+		JLabel nameamtlabel = new JLabel("Enter Amount       :");
 		nameamtlabel.setFont(new Font("SansSerif", Font.BOLD, 18));
 		nameamtlabel.setBounds(10, 108, 186, 36);
 		namepanel.add(nameamtlabel);
 		
-		TextField nametext = new TextField();
+		JTextField nametext = new JTextField();
 		nametext.setBounds(219, 26, 361, 36);
 		namepanel.add(nametext);
 		
-		TextField nameamttext = new TextField();
+		JTextField nameamttext = new JTextField();
 		nameamttext.setBounds(219, 108, 361, 36);
 		namepanel.add(nameamttext);
 		
-		Button idconfirm= new Button("Confirm");
+		JButton idconfirm= new JButton("Confirm");
 		idconfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 								
@@ -110,11 +112,11 @@ public class Transfer {
 	   				});
 					
 				}catch(NumberFormatException er) {
-					
-					new ExceptionDialog("Input Error");
+
+					JOptionPane.showMessageDialog(null,"Input Error","Error",JOptionPane.ERROR_MESSAGE);
 				}
 				catch(NullPointerException np) {
-					new ExceptionDialog("No Input");
+					JOptionPane.showMessageDialog(null,"No Input","Error",JOptionPane.ERROR_MESSAGE);
 				}
 
    				
@@ -126,7 +128,7 @@ public class Transfer {
 		idconfirm.setFont(new Font("Tahoma", Font.BOLD, 18));
 		idpanel.add(idconfirm);
 		
-		Button nameconfirm = new Button("Confirm");
+		JButton nameconfirm = new JButton("Confirm");
 		nameconfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -143,11 +145,11 @@ public class Transfer {
 	   				});
 					
 				}catch(NumberFormatException er) {
-					
-					new ExceptionDialog("Input Error");
+
+					JOptionPane.showMessageDialog(null,"Input Error","Error",JOptionPane.ERROR_MESSAGE);
 				}
 				catch(NullPointerException np) {
-					new ExceptionDialog("No Input");
+					JOptionPane.showMessageDialog(null,"No Input","Error",JOptionPane.ERROR_MESSAGE);
 				}
 
    				
