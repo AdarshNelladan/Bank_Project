@@ -7,12 +7,14 @@ package bank_main;
  * @author Adarsh
  *
  */
-import java.awt.*;
-import java.awt.event.*;
+
 import classes.*;
 import sql.SqlFunctions;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BankMainPage extends JFrame implements Runnable{
 
@@ -91,7 +93,28 @@ public class BankMainPage extends JFrame implements Runnable{
 		deposit_button.setBounds(20, 300, 300, 50);
 		deposit_button.addActionListener(new ActionListener() {
    			 public void actionPerformed(ActionEvent e) {
-                   new Deposit(id);
+
+                 try {
+                     double amount = Double.parseDouble(JOptionPane.showInputDialog(rootPane, "Enter amount : "));
+                     if (amount > 0) {
+                         if (amount < 1000000000) {
+
+                             sql.deposit(id, amount);
+                             JOptionPane.showMessageDialog(null, "Success");
+                         } else {
+                             JOptionPane.showMessageDialog(null, "Amount above limit,contact bank for assistance", "Error:Limit reached", JOptionPane.INFORMATION_MESSAGE);
+                         }
+
+                     } else {
+                         JOptionPane.showMessageDialog(null, "Invalid amount", "Error", JOptionPane.ERROR_MESSAGE);
+                     }
+
+                 } catch (NumberFormatException er) {
+
+                     JOptionPane.showMessageDialog(null, "Input Error", "Error", JOptionPane.ERROR_MESSAGE);
+
+                 } catch (NullPointerException np) {
+                 }
    			 }
    		 });
         add(deposit_button);
@@ -100,26 +123,37 @@ public class BankMainPage extends JFrame implements Runnable{
 		withdraw_button.setBounds(700, 300, 300, 50);
 		withdraw_button.addActionListener(new ActionListener() {
    			 public void actionPerformed(ActionEvent e) {
-                    new Withdraw(id);
+                 try {
+                     double amount = Double.parseDouble(JOptionPane.showInputDialog(rootPane, "Enter amount : "));
+                     String bal = sql.balanceCheck(id);
+                     double bal1 = Double.parseDouble(bal);
+                     if (amount > 0 && bal1 - amount >= 1000) {
+                         sql.withdraw(id, amount);
+                         JOptionPane.showMessageDialog(null, "Success");
+
+                     } else if (amount <= 0) {
+                         JOptionPane.showMessageDialog(null, "Invalid input", "Error", JOptionPane.ERROR_MESSAGE);
+                     } else {
+                         JOptionPane.showMessageDialog(null, "Insufficient balance!(Note withdrawal not possible from minimum balance)", "Error", JOptionPane.ERROR_MESSAGE);
+                     }
+
+                 } catch (NumberFormatException er) {
+                     JOptionPane.showMessageDialog(null, "Error in input", "Error", JOptionPane.ERROR_MESSAGE);
+                 } catch (NullPointerException np) {
+                 }
    			 }
    		 });
         add(withdraw_button);
         
         details_button=new JButton("User Details");
 		details_button.setBounds(20, 400, 300, 50);
-		details_button.addActionListener(new ActionListener() {
-   			 public void actionPerformed(ActionEvent e) {
-   				EventQueue.invokeLater(new Runnable() {
-   					public void run() {
-   						try {
-                            new UserDetails(id);
-   						} catch (Exception e) {
-   							e.printStackTrace();
-   						}
-   					}
-   				});
-   			 }
-   		 });
+        details_button.addActionListener(e -> EventQueue.invokeLater(() -> {
+            try {
+                new UserDetails(id);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }));
         add(details_button);
         transfer_button=new JButton("Transfer");
 		transfer_button.setBounds(20, 500, 300, 50);
