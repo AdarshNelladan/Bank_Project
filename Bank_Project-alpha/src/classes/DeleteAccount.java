@@ -3,11 +3,10 @@
  */
 package classes;
 
-import java.awt.Font;
 import sql.SqlFunctions;
 
 import javax.swing.*;
-import java.awt.TextArea;
+import java.awt.*;
 
 /**
  * @author Adarsh
@@ -33,7 +32,7 @@ public class DeleteAccount extends JFrame {
         setSize(600,600);
         setLayout(null);
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         //JLabel
         pass=new JLabel("Enter Password :");

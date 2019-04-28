@@ -8,11 +8,15 @@ package bank_main;
  * @author Adarsh Anandhakrishna Abhiram
  *
  */
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 
 import sql.SqlFunctions;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 public class LoginPage  {
 	int res=0;
 	SqlFunctions sq=new SqlFunctions();
@@ -76,7 +80,7 @@ public class LoginPage  {
    		 login_button.addActionListener(new ActionListener() {
    			 public void actionPerformed(ActionEvent e) {
    				 input_name=name_field.getText();
-   				 input_password=pass_field.getText();
+				 input_password = String.valueOf(pass_field.getPassword());
     		     checkLoginData(input_name,input_password);
 
    			 }
@@ -126,8 +130,5 @@ public class LoginPage  {
 	    }
    }
 
-   public void windowClosing(WindowEvent e) {  
-	    fr1.dispose();  
-   }
 
 }

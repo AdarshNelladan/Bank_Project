@@ -1,9 +1,10 @@
 package classes;
-import java.awt.*;
-import java.awt.event.*;
+
 import sql.SqlFunctions;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class Transfer {
 	
@@ -23,14 +24,14 @@ public class Transfer {
 		mainframe.setLayout(null);
 		mainframe.setSize(800, 700);
 		mainframe.setVisible(true);
-		
+		mainframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//Main Buttons
 		idbt=new JButton(IDBUTTON);
 		idbt.setBounds(250, 150, 100, 50);
 		idbt.setFont(new Font("Tahoma",Font.BOLD,16));
 		mainframe.add(idbt);
 		namebt=new JButton(NAMEBUTTON);
-		namebt.setBounds(400, 150, 150, 50);
+		namebt.setBounds(400, 150, 200, 50);
 		namebt.setFont(new Font("Tahoma",Font.BOLD,16));
 		mainframe.add(namebt);
 		back= new JButton("Back");

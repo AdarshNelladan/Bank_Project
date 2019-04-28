@@ -40,6 +40,7 @@ public class BankMainPage extends JFrame implements Runnable{
 		setSize(1028, 768);
 		setLayout(null);
 		setVisible(true);
+		Font font = new Font("Sans-Seriff", Font.BOLD, 14);
 		Thread t=new Thread(this);
 		t.start();
 		
@@ -54,6 +55,7 @@ public class BankMainPage extends JFrame implements Runnable{
 		//Buttons
 		balance_button=new JButton("Check Balance");
 		balance_button.setBounds(20, 200, 300, 50);
+		balance_button.setFont(font);
 		balance_button.addActionListener(new ActionListener() {
    			 public void actionPerformed(ActionEvent e) {
                  balance=sql.balanceCheck(id);
@@ -63,6 +65,7 @@ public class BankMainPage extends JFrame implements Runnable{
         add(balance_button);        
         statement_button=new JButton("Statement");
 		statement_button.setBounds(700, 200, 300, 50);
+		statement_button.setFont(font);
 		statement_button.addActionListener(new ActionListener() {
    			 public void actionPerformed(ActionEvent e) {
    				EventQueue.invokeLater(new Runnable() {
@@ -81,6 +84,7 @@ public class BankMainPage extends JFrame implements Runnable{
         
         chgpswd_button=new JButton("Change Password");
 		chgpswd_button.setBounds(700, 400, 300, 50);
+		chgpswd_button.setFont(font);
 		chgpswd_button.addActionListener(new ActionListener() {
    			 public void actionPerformed(ActionEvent e) {
    				 new ChangePassword(id);
@@ -91,6 +95,7 @@ public class BankMainPage extends JFrame implements Runnable{
         
         deposit_button=new JButton("Deposit");
 		deposit_button.setBounds(20, 300, 300, 50);
+		deposit_button.setFont(font);
 		deposit_button.addActionListener(new ActionListener() {
    			 public void actionPerformed(ActionEvent e) {
 
@@ -121,6 +126,7 @@ public class BankMainPage extends JFrame implements Runnable{
         
         withdraw_button=new JButton("Withdraw");
 		withdraw_button.setBounds(700, 300, 300, 50);
+		withdraw_button.setFont(font);
 		withdraw_button.addActionListener(new ActionListener() {
    			 public void actionPerformed(ActionEvent e) {
                  try {
@@ -147,6 +153,7 @@ public class BankMainPage extends JFrame implements Runnable{
         
         details_button=new JButton("User Details");
 		details_button.setBounds(20, 400, 300, 50);
+		details_button.setFont(font);
         details_button.addActionListener(e -> EventQueue.invokeLater(() -> {
             try {
                 new UserDetails(id);
@@ -157,6 +164,7 @@ public class BankMainPage extends JFrame implements Runnable{
         add(details_button);
         transfer_button=new JButton("Transfer");
 		transfer_button.setBounds(20, 500, 300, 50);
+		transfer_button.setFont(font);
 		transfer_button.addActionListener(new ActionListener() {
    			 public void actionPerformed(ActionEvent e) {
    				EventQueue.invokeLater(new Runnable() {
@@ -173,6 +181,7 @@ public class BankMainPage extends JFrame implements Runnable{
         add(transfer_button);
         delete_button=new JButton("Delete Account");
 		delete_button.setBounds(700, 500, 300, 50);
+		delete_button.setFont(font);
 		delete_button.addActionListener(new ActionListener() {
    			 public void actionPerformed(ActionEvent e) {
    				EventQueue.invokeLater(new Runnable() {
@@ -190,6 +199,7 @@ public class BankMainPage extends JFrame implements Runnable{
         add(delete_button);
         signout=new JButton("Signout");
 		signout.setBounds(350, 600, 300, 50);
+		signout.setFont(font);
 		signout.addActionListener(new ActionListener() {
    			 public void actionPerformed(ActionEvent e) {
                  new WelcomePage();

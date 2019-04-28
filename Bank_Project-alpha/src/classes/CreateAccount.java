@@ -139,7 +139,7 @@ public class CreateAccount extends JFrame  {
     		 create_button.setEnabled(false);
     		 create_button.addActionListener(new ActionListener() {
     			 public void actionPerformed(ActionEvent e) {
-    				 if(name_field.getText().equals("") || username_field.getText().equals("") || pass_field.getText().equals("") || address_area.getText().equals("") || age_field.getText().isEmpty()==true ) {
+					 if (name_field.getText().equals("") || username_field.getText().equals("") || String.valueOf(pass_field.getPassword()).equals("") || address_area.getText().equals("") || age_field.getText().isEmpty()) {
     			         visibility("noinput");
     			         JOptionPane.showMessageDialog(null, "No Input", "Error", JOptionPane.ERROR_MESSAGE);
     				 }
@@ -153,9 +153,9 @@ public class CreateAccount extends JFrame  {
     					 try {
         				     input_name=name_field.getText();
         				     input_username=username_field.getText();
-        				     input_password=pass_field.getText();
+							 input_password = String.valueOf(pass_field.getPassword());
                              input_address=address_area.getText();
-        				     if(age_field.getText().isEmpty()==false ) {
+							 if (!age_field.getText().isEmpty()) {
             			     	 input_age= Integer.parseInt(age_field.getText()); 
             			     	 
             			     	 if(input_age<18) {

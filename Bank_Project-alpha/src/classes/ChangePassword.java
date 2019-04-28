@@ -3,11 +3,10 @@
  */
 package classes;
 
-import java.awt.*;
-import java.awt.event.*;
 import sql.SqlFunctions;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Class to change password
@@ -27,11 +26,7 @@ public class ChangePassword {
     public ChangePassword(int id) {
         mainframe=new JFrame("Change Password");
         mainframe.setSize(600,600);
-        mainframe.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent w) {
-                mainframe.dispose();
-            }
-        });
+        mainframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         //JLabel
 
